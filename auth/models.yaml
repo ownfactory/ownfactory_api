@@ -1,0 +1,15 @@
+components:
+  schemas:
+    RegistrationRequestDto:
+      description: Registration request
+      type: object
+      properties:
+        userName:
+          type: string
+          nullable: false
+        phone:
+          type: string
+          nullable: false
+        email:
+          type: string
+          nullable: false

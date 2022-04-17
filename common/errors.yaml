@@ -1,0 +1,28 @@
+components:
+  responses:
+    ApiErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CommonError"
+
+  schemas:
+    CommonError:
+      description: Общий тип ошибки, который может возвращать сервер.
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: integer
+          description: >
+            Это идентификатор ошибки.
+            Этот идентификатор мобильное приложение будет использовать для того, чтобы включать определенное поведение
+        userMessage:
+          type: string
+          nullable: true
+          description: Сообщение, которое будет выведено пользователю в интерфейсе
+        developerMessage:
+          type: string
+          nullable: true
+          description: Пояснение для разработчика/тестировщика о том, что пошло не так
