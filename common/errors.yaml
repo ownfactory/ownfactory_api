@@ -8,21 +8,19 @@ components:
 
   schemas:
     CommonError:
-      description: Общий тип ошибки, который может возвращать сервер.
+      description: General error answer that the server can return
       type: object
       required:
         - code
       properties:
         code:
           type: integer
-          description: >
-            Это идентификатор ошибки.
-            Этот идентификатор мобильное приложение будет использовать для того, чтобы включать определенное поведение
+          description: Error ID. This identifier will be used to enable certain behaviors
         userMessage:
           type: string
           nullable: true
-          description: Сообщение, которое будет выведено пользователю в интерфейсе
+          description: This message will be displayed to user
         developerMessage:
           type: string
           nullable: true
-          description: Пояснение для разработчика/тестировщика о том, что пошло не так
+          description: Explanation for the developer/tester about what went wrong

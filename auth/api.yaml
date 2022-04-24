@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: "API"
+  title: "OwnFactory Auth API"
   version: "1.0.0"
   contact:
     name: Aleksey Radionov
@@ -25,7 +25,7 @@ servers:
 paths:
   /register:
     summary: User registration
-    description: User registration
+    description: First step auth for new users
     post:
       tags:
         - auth
@@ -42,5 +42,71 @@ paths:
             application/json:
               schema:
                 $ref: "../common/models.yaml#/components/schemas/OtpRequired"
+        default:
+          $ref: "../common/errors.yaml#/components/responses/ApiErrorResponse"
+
+  /login:
+    summary: User auth
+    description: First step auth for regular users
+    post:
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "models.yaml#/components/schemas/LoginRequestDto"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "../common/models.yaml#/components/schemas/OtpRequired"
+        default:
+          $ref: "../common/errors.yaml#/components/responses/ApiErrorResponse"
+
+  /confirm:
+    summary: Get auth token
+    description: Second step auth. Get token from OTP code
+    post:
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "models.yaml#/components/schemas/ConfirmRequestDto"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "models.yaml#/components/schemas/TokenResponseDto"
+        default:
+          $ref: "../common/errors.yaml#/components/responses/ApiErrorResponse"
+
+  /refresh:
+    summary: Refresh token
+    description: Get new token from refresh token
+    post:
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "models.yaml#/components/schemas/RefreshRequestDto"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "models.yaml#/components/schemas/TokenResponseDto"
         default:
           $ref: "../common/errors.yaml#/components/responses/ApiErrorResponse"

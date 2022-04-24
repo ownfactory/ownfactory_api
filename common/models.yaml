@@ -2,7 +2,7 @@ components:
   schemas:
     KeyValuePair:
       type: object
-      description: Пара ключ-значение
+      description: key-value pair
       properties:
         key:
           type: string
@@ -13,23 +13,23 @@ components:
         - value
 
     ISO8601Date:
-      description: Дата в формате ISO8601 `YYYY-MM-DDThh:mm:ss±hh:mm`
+      description: Date in ISO8601 `YYYY-MM-DDThh:mm:ss±hh:mm`
       type: string
 
     OtpRequired:
       type: object
-      description: Модель, которая приходит, если нужен ОТП
+      description: The model that comes if you need an OTP
       properties:
         nextOtp:
           type: number
-          description: Время возможной отправки следующего кода. В секундах
+          description: The time when the next code might be sent. In seconds
           example: 60
       required:
         - nextOtp
 
     InfoMessage:
       type: object
-      description: Модель, которая хранит какое-то сообщение
+      description: Model that stores some message
       properties:
         text:
           type: string

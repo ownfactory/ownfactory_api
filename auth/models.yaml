@@ -1,15 +1,53 @@
 components:
   schemas:
     RegistrationRequestDto:
-      description: Registration request
+      description: Registration request. First step request
       type: object
       properties:
-        userName:
+        firstName:
+          type: string
+          nullable: false
+        lastName:
           type: string
           nullable: false
         phone:
           type: string
           nullable: false
-        email:
+
+    LoginRequestDto:
+      description: Login request. First step request
+      type: object
+      properties:
+        phone:
+          type: string
+          nullable: false
+
+    ConfirmRequestDto:
+      description: Confirm request. Second step request
+      type: object
+      properties:
+        phone:
+          type: string
+          nullable: false
+        otpCode:
+          type: string
+          nullable: false
+
+    RefreshRequestDto:
+      description: Refresh token request
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          nullable: false
+
+    TokenResponseDto:
+      description: Response with token
+      type: object
+      properties:
+        accessToken:
+          type: string
+          nullable: false
+        refreshToken:
           type: string
           nullable: false
